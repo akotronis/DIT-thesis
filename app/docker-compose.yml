@@ -1,0 +1,167 @@
+volumes:
+  dit-thesis-data:
+  dit-homeassistant-data:
+
+
+networks:
+  ntw-local:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+
+
+services:
+  srv-dit-wireguard:
+    image: lscr.io/linuxserver/wireguard:v1.0.20210914-ls7
+    container_name: ctr-dit-wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - ./wireguard/config:/config
+      - /lib/modules:/lib/modules
+    ports:
+      - ${WIREGUARD_UI_EXTERNAL_PORT}:${WIREGUARD_UI_INTERNAL_PORT}
+      - ${WIREGUARD_EXTERNAL_PORT}:${WIREGUARD_INTERNAL_PORT}/udp
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: always
+    networks:
+      ntw-local:
+        ipv4_address: ${WIREGUARD_FIXED_IP}
+
+  srv-dit-wireguard-ui:
+    image: ngoduykhanh/wireguard-ui:0.6.2
+    container_name: ctr-dit-wireguard-ui
+    depends_on:
+      - srv-dit-wireguard
+    cap_add:
+      - NET_ADMIN
+    network_mode: service:srv-dit-wireguard
+    environment:
+      - SENDGRID_API_KEY
+      - EMAIL_FROM_ADDRESS
+      - EMAIL_FROM_NAME
+      - SESSION_SECRET
+      - WGUI_USERNAME=${WGUI_USERNAME}
+      - WGUI_PASSWORD=${WGUI_PASSWORD}
+      - WG_CONF_TEMPLATE
+      - WGUI_MANAGE_START=true
+      - WGUI_MANAGE_RESTART=true
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    volumes:
+      - ./wireguard/ui/db:/app/db
+      - ./wireguard/ui/config:/etc/wireguard
+
+  srv-dit-localtonet:
+    image: localtonet/localtonet:latest
+    container_name: ctr-dit-localtonet
+    command: authtoken ${LOCALTONET_AUTHTOKEN}
+    restart: unless-stopped
+    networks:
+      - ntw-local
+
+  srv-dit-ngrok:
+    image: ngrok/ngrok:3
+    container_name: ctr-dit-ngrok
+    command: http --url=grand-implicitly-escargot.ngrok-free.app ctr-dit-wireguard:5000
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    ports:
+      - 4040:4040
+    restart: always
+    networks:
+      - ntw-local
+
+  srv-dit-db:
+    image: postgis/postgis:15-3.5
+    container_name: ctr-dit-db
+    restart: unless-stopped
+    volumes:
+      - dit-thesis-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - ${POSTGRES_EXTERNAL_PORT}:${POSTGRES_INTERNAL_PORT}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d ${POSTGRES_DB} -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 8s
+      retries: 3
+      start_period: 5s
+    networks:
+      - ntw-local
+
+  srv-dit-back:
+    build: ./back
+    container_name: ctr-dit-back
+    restart: always
+    ports:
+      - ${BACKEND_EXTERNAL_PORT}:${BACKEND_INTERNAL_PORT}
+    volumes:
+      - ./back:/opt/back
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_HOST=srv-dit-db
+      - VM_FIXED_IP=${VM_FIXED_IP}
+    # command: ["python", "manage.py", "runserver", "0.0.0.0:${BACKEND_INTERNAL_PORT}"]
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:${BACKEND_EXTERNAL_PORT}/admin"]
+    #   interval: 10s
+    #   timeout: 8s
+    #   retries: 3
+    #   start_period: 5s
+    depends_on:
+      srv-dit-db:
+        condition: service_healthy
+    networks:
+      ntw-local:
+        ipv4_address: ${BACKEND_FIXED_IP}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  
+  srv-dit-front:
+    build: ./front
+    container_name: ctr-dit-front
+    restart: always
+    ports:
+      - ${FRONTEND_EXTERNAL_PORT}:${FRONTEND_INTERNAL_PORT}
+    volumes:
+      - ./front:/opt/front
+    env_file:
+      - .env
+    environment:
+      - BACKEND_HOST=srv-dit-back
+    # depends_on:
+    #   srv-dit-back:
+    #     condition: service_healthy
+    networks:
+      ntw-local:
+        ipv4_address: ${FRONTEND_FIXED_IP}
+
+  srv-dit-homeassistant:
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    container_name: ctr-dit-homeassistant
+    volumes:
+      - dit-homeassistant-data:/config
+      # - ./homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - HOMEASSISTANT_OPTS=--config /config --log-file /dev/stdout --log-level debug
+    # healthcheck:
+    #   test: 'curl -m 90 -sLf http://localhost:8123 || date >> /config/healthcheck.log'
+    #   interval: 90s
+    #   timeout: 60s
+    #   retries: 2
+    network_mode: host
