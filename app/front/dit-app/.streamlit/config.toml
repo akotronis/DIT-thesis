@@ -1,0 +1,13 @@
+[browser]
+serverAddress = "0.0.0.0"
+port = 8501
+
+[server]
+# Prevent open app in a new window/tab when entrypoint file is run
+headless = true
+
+# Automatically rerun script when the file is modified on disk
+runOnSave = true
+
+[theme]
+base = "dark"

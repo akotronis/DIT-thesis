@@ -1,0 +1,11 @@
+# GENERAL
+# python-dotenv==1.0.1
+requests==2.32.3
+
+# STREAMLIT
+streamlit==1.40.2
+streamlit-folium==0.23.2
+
+# GEO ROUTES
+geopy==2.4.1
+shapely==2.0.6

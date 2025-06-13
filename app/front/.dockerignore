@@ -1,0 +1,9 @@
+# Common
+*.md
+*.yml
+Dockerfile
+
+# git
+.git
+.gitattributes
+.gitignore
