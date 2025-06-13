@@ -1,0 +1,10 @@
+import os
+
+BACKEND_HOST = os.getenv('BACKEND_HOST')
+BACKEND_PORT = os.getenv('BACKEND_PORT')
+
+BACKEND_HOST = '127.0.0.1' # '192.168.1.4' # 'srv-dit-back'
+BACKEND_PORT = 8000 # 8100
+BACKEND_URL = f'http://{BACKEND_HOST}:{BACKEND_PORT}'
+
+GENERIC_REQUEST_ERROR = 'Service error'

@@ -1,0 +1,110 @@
+#:kivy 2.3.1
+
+<CommonMDList@MDList>:
+    padding: 0, dp(10), dp(20), 0
+    spacing: dp(8)
+
+
+<CommonMDListItem@MDListItem>:
+    radius: dp(25)
+    pos_hint: {"center_x": .5, "center_y": .5}
+    size_hint_x: .8
+
+
+<MyNavigationDrawer>:
+    radius: 0, dp(16), dp(16), 0
+    MDBoxLayout:
+        orientation: "vertical"
+        MDScrollView:
+            MDBoxLayout:
+                padding: 0, dp(10), dp(20), 0
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                ########################################################
+                ######################## ACCOUNT #######################
+                ########################################################
+                MDListItemHeadlineText:
+                    text: "Account"
+                    halign: "center"
+                CommonMDList:
+                    CommonMDListItem:
+                        id: home_list_item
+                        on_release:
+                            app.switch_screen("home")
+                        MDListItemLeadingIcon:
+                            icon: "home"
+                        MDListItemHeadlineText:
+                            text: "Home"
+                    CommonMDListItem:
+                        id: nav_drawer_login
+                        on_release:
+                            app.switch_screen("login")
+                        MDListItemLeadingIcon:
+                            icon: "login"
+                        MDListItemHeadlineText:
+                            text: "Log In"
+                    CommonMDListItem:
+                        id: nav_drawer_sign_up
+                        on_release:
+                            app.switch_screen("sign_up")
+                        MDListItemLeadingIcon:
+                            icon: "login-variant"
+                        MDListItemHeadlineText:
+                            text: "Sign Up"
+                    CommonMDListItem:
+                        id: nav_drawer_sign_out
+                        on_release:
+                            app.sign_out_user()
+                        MDListItemLeadingIcon:
+                            icon: "logout"
+                        MDListItemHeadlineText:
+                            text: "Sign Out"
+                ########################################################
+                ######################## GROUPS ########################
+                ########################################################
+                MyDivider:
+                    height:20
+                    id: nav_drawer_hidable_divider
+                Widget:
+                    size_hint_y: None
+                    height: dp(10)
+                MDListItemHeadlineText:
+                    id: nav_drawer_groups_label
+                    text: "Groups"
+                    halign: "center"
+                CommonMDList:
+                    id: nav_drawer_groups_list
+                    CommonMDListItem:
+                        on_release:
+                            app.switch_screen("management")
+                        MDListItemLeadingIcon:
+                            icon: "account-cog"
+                        MDListItemHeadlineText:
+                            text: "Management"
+                    CommonMDListItem:
+                        on_release:
+                            app.switch_screen("invitations")
+                        MDListItemLeadingIcon:
+                            icon: "email"
+                        MDListItemHeadlineText:
+                            text: "Invitations"
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+                ########################################################
+                ####################### SWITCHES #######################
+                ########################################################
+                MyDivider:
+                MySwitch:
+                    label_text: "Toggle theme"
+                    switch_toggle_callback: app.toggle_theme
+                MyDivider:
+                MySwitch:
+                    id: share_location_switch
+                    label_text: "Share location"
+                    switch_toggle_callback: app.toggle_share_location_switch
+                MyDivider:
+                MyChips:
+                    id: share_location_chips
+                MyDivider:

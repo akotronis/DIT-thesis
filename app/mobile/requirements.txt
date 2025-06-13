@@ -1,0 +1,31 @@
+#### KIVY
+## Base libraries
+# kivy[base]==2.3.1
+# kivymd @ https://github.com/kivymd/KivyMD/archive/master.zip
+
+# kivy==2.3.0
+# kivymd @ https://github.com/kivymd/KivyMD/archive/5ae6ae9c5b9fb33271769c5d3ffa4a4bf7c7cbdc.zip # 2.0.0
+
+# kivy==2.2.1
+# kivymd==1.2.0
+
+# kivy @ https://github.com/kivy/kivy/archive/master.zip
+# kivymd @ https://github.com/kivymd/KivyMD/archive/master.zip
+
+kivy>=2.2.0
+kivymd @ https://github.com/kivymd/KivyMD/archive/master.zip
+
+
+## Building
+# For distutils (not in python 3.12) required for building 
+setuptools==75.8.0
+pip==25.0.1
+
+## Watch file changes / Hot Reload
+# kivy-reloader==0.4.6
+# watchdog==6.0.0
+# kaki @ https://github.com/tito/kaki.git
+## GPS
+plyer==2.1.0
+## Apis
+requests==2.32.3

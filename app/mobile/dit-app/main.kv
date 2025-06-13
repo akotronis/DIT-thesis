@@ -1,0 +1,24 @@
+#:kivy 2.3.1
+
+
+<MainScreen>:
+    md_bg_color: self.theme_cls.secondaryContainerColor
+    MDBoxLayout:
+        orientation: 'vertical'
+        MyTopToolBar:
+            id: toolbar
+        MDNavigationLayout:
+            MDScreenManager:
+                id: screen_manager
+                HomeScreen:
+                    name: "home"
+                LogInScreen:
+                    name: "login"
+                SignUpScreen:
+                    name: "sign_up"
+                InvitationsScreen:
+                    name: "invitations"
+                ManagementScreen:
+                    name: "management"
+            MyNavigationDrawer:
+                id: nav_drawer

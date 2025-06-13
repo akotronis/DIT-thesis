@@ -1,0 +1,20 @@
+from kivy.app import App
+from kivy.lang import Builder
+from kivymd.uix.screen import MDScreen
+
+from .... import services as app_services
+from .... import utils as app_utils
+
+
+Builder.load_file(app_utils.get_kivy_filepath(__file__))
+
+
+class HomeScreen(MDScreen):
+
+    def on_enter(self, *args):
+        pass
+
+
+if __name__ == '__main__':
+    app_services.configure_window()
+    app_services.test_page(HomeScreen)

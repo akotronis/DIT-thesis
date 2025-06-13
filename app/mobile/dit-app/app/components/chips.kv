@@ -1,0 +1,32 @@
+#:kivy 2.3.1
+
+<MyChips>:
+    orientation: "horizontal"
+    size_hint_y: None
+    height: dp(60)
+    spacing: dp(8)
+    padding: dp(16)
+    
+    MDChip:
+        id: gps_data
+        on_release: app.toggle_share_location_chip(*args, 'gps')
+        type: "filter"
+        size_hint_x: 0.5
+        height: dp(48)
+        pos_hint: {"center_y": 0.5}
+        MDChipText:
+            id: gps
+            text: "GPS"
+            bold: True
+    
+    MDChip:
+        id: mock_data
+        on_release: app.toggle_share_location_chip(*args, 'mock')
+        type: "filter"
+        size_hint_x: 0.5
+        height: dp(48)
+        pos_hint: {"center_y": 0.5}
+        MDChipText:
+            id: mock
+            text: "MOCK"
+            bold: True

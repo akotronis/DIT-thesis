@@ -1,0 +1,30 @@
+#:kivy 2.3.1
+
+<MyTopToolBar>:
+    size_hint_x: .999
+    MDTopAppBarLeadingButtonContainer:
+        MDActionTopAppBarButton:
+            on_release: app.manage_navigation()
+            icon: "menu"
+        MDActionTopAppBarButton:
+            id: user_icon
+            icon: "account"
+            theme_text_color: "Custom"
+            text_color: 0, 1, 0, 1
+            on_release: app.user_popup()
+    MDTopAppBarTitle:
+        text: "PingSpot"
+        pos_hint: {"center_x": .5}
+    MDTopAppBarTrailingButtonContainer:
+        id: toolbar_button_container
+        MyLoadingIndicator:
+            id: loading_button
+            size_hint: None, None
+            size: dp(30), dp(30)
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        MDActionTopAppBarButton:
+            id: connection_icon
+            icon: "access-point"
+            theme_text_color: "Custom"
+            text_color: 0, 1, 0, 1
+            on_release: app.check_connection()

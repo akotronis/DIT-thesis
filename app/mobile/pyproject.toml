@@ -1,0 +1,23 @@
+[project]
+name = "mobile"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "kivy==2.3.1",
+    "kivymd",
+    "plyer",
+    "requests==2.32.3",
+    "kivy-garden.mapview>=0.1.5",
+]
+
+[build-system]
+requires = [
+    "setuptools>=75.8.0",
+    "cython>=0.29.36",
+    "wheel"
+]
+
+[tool.uv.sources]
+kivymd = { url = "https://github.com/kivymd/KivyMD/archive/master.zip" }
+plyer = { url = "https://github.com/kivy/plyer/archive/master.zip" }

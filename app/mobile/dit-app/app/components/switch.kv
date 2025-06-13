@@ -1,0 +1,18 @@
+#:kivy 2.3.1
+
+<MySwitch>:
+    orientation: "horizontal"
+    size_hint_y: None
+    height: dp(60)
+    pos_hint: {"center_x":.5}
+    MDLabel:
+        text: root.label_text
+        halign: "left"
+        valign: "center"
+        size_hint_y: None
+        height: dp(60)
+    MDSwitch:
+        id: switch
+        pos_hint: {"center_y": 0.5}
+        on_active: root.switch_toggle_callback(*args)
+        disabled: root.disabled
