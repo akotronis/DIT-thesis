@@ -1,0 +1,34 @@
+- id: '1745429663993'
+  alias: tapo-webhook-on
+  description: ''
+  triggers:
+  - trigger: webhook
+    allowed_methods:
+    - POST
+    - PUT
+    local_only: true
+    webhook_id: tapo-webhook-on
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: a47689062d85d27f2eb6a74c6606c00b
+    entity_id: 88f1b63829f8b8790592593ce763ae86
+    domain: switch
+  mode: single
+- id: '1745430578984'
+  alias: tapo-webhook-off
+  description: ''
+  triggers:
+  - trigger: webhook
+    allowed_methods:
+    - POST
+    - PUT
+    local_only: true
+    webhook_id: tapo-webhook-off
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: a47689062d85d27f2eb6a74c6606c00b
+    entity_id: 88f1b63829f8b8790592593ce763ae86
+    domain: switch
+  mode: single
