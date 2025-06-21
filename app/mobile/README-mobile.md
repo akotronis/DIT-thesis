@@ -97,13 +97,29 @@ On WSL shell:
 
 
 ### Development workflow
-Build with
-- `$ docker run --rm -it --entrypoint /bin/sh -v "$HOME/.gradle":/home/user/.gradle -v "$HOME/.buildozer":/home/user/.buildozer -v "$(pwd)":/home/user/hostcwd img-dit-buildozer -c "buildozer -v android debug"`
+**ADB**
+- On windows:
+    - `C:\Users\akotr> adb kill-server`
+    - `C:\Users\akotr> adb -a -P 5037 nodaemon server`
+- On WSL:    
+    - `$ adb -P 5037 -H <WINDOWS-IP> devices` (Change ip with the output of `C:\Users\akotr> ipconfig` on _Wireless LAN adapter Wi-Fi => IPv4 Address_)
+        - If this doesnt work, temporary disable firewall: On `C:\Windows\system32> netsh advfirewall set allprofiles state off` (Turn it on again with `C:\Windows\system32> .... on`)
+
+**Build/install apk**
+On WSL:
+- Build buildozer image: `../app/mobile/dit-app$ docker build -t img-dit-buildozer .`
+- `../app/mobile/dit-app$ docker run --rm -it --entrypoint /bin/sh -v "$HOME/.gradle":/home/user/.gradle -v "$HOME/.buildozer":/home/user/.buildozer -v "$(pwd)":/home/user/hostcwd img-dit-buildozer -c "buildozer -v android debug"`
     - If **.buidozer** and **bin** folders are NOT deleted rebuild time reduces from **45-50 min** to **20 min**
     - Mounting **`$HOME/.gradle":/home/user/.gradle`** reduces rebuilds from **20-50 min** to **1-2 min**
     - Rebuild creates new apk and overwrites old
     - Code changes are reflected on mobile
 - Delete app from mobile
-- Install app to mobile: `$ adb -P 5037 -H 192.168.1.37 install bin/*.apk`
-- Clear and follow logs `$ adb -P 5037 -H 192.168.1.37 logcat -c && adb -P 5037 -H 192.168.1.37 logcat *:S python:D`
+- Install app to mobile: `$ adb -P 5037 -H <WINDOWS-IP> install bin/*.apk`
+- Clear and follow logs `$ adb -P 5037 -H <WINDOWS-IP> logcat -c && adb -P 5037 -H <WINDOWS-IP> logcat *:S python:D`
 - Run app from mobile
+**SCRCPY**
+To be exported again on restart since ip may be different:
+    - `$ export ANDROID_ADB_SERVER_PORT=5037`
+    - `$ export ADB_SERVER_SOCKET=tcp:<WINDOWS-IP>:5037`
+    - `$ export ANDROID_ADB_SERVER_ADDRESS=<WINDOWS-IP>`
+- `$ scrcpy` to see the mobile screen

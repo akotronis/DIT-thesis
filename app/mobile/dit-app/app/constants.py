@@ -1,6 +1,8 @@
 BACKEND_PORT = 8000
 
 BACKEND_HOSTS = [
+    # Fixed container IP (Access through reverse proxies and wireguard tunnnel/traffic forwarding)
+    '172.28.1.102',
     # Localhost (Mobile app runs locally)
     'localhost',
     '127.0.0.1',

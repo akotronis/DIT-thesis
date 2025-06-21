@@ -7,6 +7,8 @@ from . import services as intr_srv
 
 @receiver(post_save, sender=intr_mdl.Location)
 def create_notification(sender, instance, created, **kwargs):
+    if not instance.user.visible:
+        return
     if created:
         zones_entered = intr_srv.zones_crossed(instance, intr_srv.check_for_zone_entrance)
         turned_on = False
