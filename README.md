@@ -36,3 +36,8 @@ A **TP-Link Tapo smart plug** is integrated to demonstrate geolocation-triggered
 ## Demos
 ### Mobile Application
 <p align="center"><img src="./resources/Mobile-app-demo.gif" alt="Mobile app" width="400"/></p>
+
+### Dashboard Application
+[](https://github.com/user-attachments/assets/6e228aae-f9bd-45c7-81d7-4aa5f8c13386)
+<p align="center"><video width="800" controls><source src="./resources/Location-monitoring.mp4" type="video/mp4"></video></p>
+
