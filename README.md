@@ -30,4 +30,8 @@ A **TP-Link Tapo smart plug** is integrated to demonstrate geolocation-triggered
 
 ## System architecture
 
-<p align="center"><img src="./resources/system-architecture.png" width="500"/></p>
+<p align="center"><img src="./resources/System-architecture.png" width="500"/></p>
+
+
+## Demos
+<p align="center"><img src="./resources/Mobile-app-demo.gif" alt="Heatmap" width="400"/></p>
