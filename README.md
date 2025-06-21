@@ -5,9 +5,9 @@ The primary objective is to develop a system that enables users to share their r
 
 ## Dockerized Services
 
-The system is deployed inside a **Linux** virtual machine where **Docker Compose** orchestrates several services:
+The system is deployed inside a **Linux** virtual machine launched with **Vagrant** and **VirtualBox** where **Docker Compose** orchestrates the following services:
 - A **Django** backend
-- A **PostgreSQL/PostGIS** for data storage,
+- A **PostgreSQL/PostGIS** database for data storage,
 - A **Streamlit** dashboard for monitoring,
 - **Home Assistant** for IoT integration,
 - A **WireGuard VPN server** with a management interface.
@@ -35,9 +35,18 @@ A **TP-Link Tapo smart plug** is integrated to demonstrate geolocation-triggered
 
 ## Demos
 ### Mobile Application
-<p align="center"><img src="./resources/Mobile-app-demo.gif" alt="Mobile app" width="400"/></p>
+[](https://github.com/user-attachments/assets/d3c163b6-2e17-4a9b-8a4c-655506bc17ba)
+<p align="center"><video width="400" controls><source src="./resources/Mobile-app-demo.mp4" type="video/mp4"></video></p>
 
 ### Dashboard Application
+[](https://github.com/user-attachments/assets/a29f293c-e4d9-4bd1-b52d-92e0d65d514b)
+<p align="center"><video width="800" controls><source src="./resources/Group-management.mp4" type="video/mp4"></video></p>
+
+[](https://github.com/user-attachments/assets/f92cb4f4-ada5-484b-bfdd-e001e1d074b5)
+<p align="center"><video width="800" controls><source src="./resources/Group-invitations.mp4" type="video/mp4"></video></p>
+
+[](https://github.com/user-attachments/assets/01e562be-ac97-4bd2-ac1d-222a7ddf21f0)
+<p align="center"><video width="800" controls><source src="./resources/Zone-definition" type="video/mp4"></video></p>
+
 [](https://github.com/user-attachments/assets/6e228aae-f9bd-45c7-81d7-4aa5f8c13386)
 <p align="center"><video width="800" controls><source src="./resources/Location-monitoring.mp4" type="video/mp4"></video></p>
-
