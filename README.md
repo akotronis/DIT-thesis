@@ -40,4 +40,4 @@ A **TP-Link Tapo smart plug** is integrated to demonstrate geolocation-triggered
 ### Streamlit Dashboard
 #### Location Monitoring
 [](https://github.com/akotronis/DIT-thesis/blob/main/resources/Location-monitoring.mp4)
-<p align="center"><img src="./resources/Location-monitoring.gif" alt="Location Monitoring" width="700"/></p>
+<p align="center"><img src="./resources/Location-monitoring.mp4" alt="Location Monitoring" width="700"/></p>
