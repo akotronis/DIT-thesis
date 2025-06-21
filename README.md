@@ -36,8 +36,3 @@ A **TP-Link Tapo smart plug** is integrated to demonstrate geolocation-triggered
 ## Demos
 ### Mobile Application
 <p align="center"><img src="./resources/Mobile-app-demo.gif" alt="Mobile app" width="400"/></p>
-
-### Streamlit Dashboard
-#### Location Monitoring
-[](https://github.com/akotronis/DIT-thesis/blob/main/resources/Location-monitoring.mp4)
-<p align="center"><img src="./resources/Location-monitoring.mp4" alt="Location Monitoring" width="700"/></p>
