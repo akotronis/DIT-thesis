@@ -122,4 +122,4 @@ To be exported again on restart since ip may be different:
     - `$ export ANDROID_ADB_SERVER_PORT=5037`
     - `$ export ADB_SERVER_SOCKET=tcp:<WINDOWS-IP>:5037`
     - `$ export ANDROID_ADB_SERVER_ADDRESS=<WINDOWS-IP>`
-- `$ scrcpy` to see the mobile screen
+- `$ scrcpy --no-audio` to see the mobile screen
