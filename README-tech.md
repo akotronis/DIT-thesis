@@ -93,9 +93,13 @@ For connectivity problems make sure:
 - Still devices can't be (auto)discoverd. See
     - [Home assistant on desktop docker help!](https://www.reddit.com/r/homeassistant/comments/1aq6bdb/comment/kqawzh1/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 - Use **named volume** in the vm
+
+#### Add Device
+- Find Tapo IP from router page: _LAN settings_ &rarr; _Allocated Address (DHCP)_
+- `vagrant@ubuntu2204:~/code/DIT-thesis$ curl http://192.168.1.13:80` to see if the device is accessible from the VM
+- _Settings (Left Pane)_ &rarr; _Device & Settings_ &rarr; _Device Tab_ &rarr;  _Add Device (Bottom Right)_ &rarr; Search _Tp-Link_ &rarr; Select _Tapo_
 - `$ sudo cat /var/lib/docker/volumes/app_dit-homeassistant-data/_data/.storage/core.config_entries` to see if the correct device IP is registered
-    - If the device has not the correct id (the one from router's page &rarr; LAN settings &rarr; Allocated Address (DHCP)), delete the device and add it again
-- `vagrant@ubuntu2204:~/code/DIT-thesis$ curl http://192.168.1.13:80` to see if the device is accessible
+    - If the device has not the correct id (the one from router's page) &rarr; _LAN settings_ &rarr; _Allocated Address (DHCP)_, delete the device and add it again
 - [Integrations - TP-Link Smart Home](https://www.home-assistant.io/integrations/tplink)
 
 #### Automation Creation
