@@ -50,3 +50,7 @@ A **TP-Link Tapo smart plug** is integrated to demonstrate geolocation-triggered
 
 [](https://github.com/user-attachments/assets/6e228aae-f9bd-45c7-81d7-4aa5f8c13386)
 <p align="center"><video width="800" controls><source src="./resources/media/Location-monitoring.mp4" type="video/mp4"></video></p>
+
+### End to end flow
+- [Flow with Tapo on](https://drive.google.com/file/d/1XvdSXJpWbGrezwLiGyvhdX9Fn8PC4qZX/view?usp=drive_link)
+- [Flow without Tapo](https://drive.google.com/file/d/1FHycPfoM-T6hdbpZ30abr1wxzGUB7Omj/view?usp=drive_link)
