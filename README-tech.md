@@ -227,10 +227,18 @@ If `$ vagrant up` stucks on ssh:
 
 #### scrcpy
 - [Downloads](https://github.com/Genymobile/scrcpy/releases/tag/v3.1)
+- [Github repo](https://github.com/Genymobile/scrcpy/tree/master)
 
 #### VM
 - [Youtube - How to install Ubuntu 24.04 LTS in VirtualBox 2024 - (TopNotch Programmer)](https://www.youtube.com/watch?v=Hva8lsV2nTk)
 - [Ubuntu downloads](https://ubuntu.com/download/desktop/thank-you?version=24.04.2&architecture=amd64&lts=true)
+
+#### Location APIs
+This URL calls the Open Source Routing Machine (OSRM) API to compute a walking route (foot) between two geographic coordinates.
+- [OSRM Route API (Foot Routing)](https://router.project-osrm.org/route/v1/foot/23.6983667,37.9623023;23.698799400000002,37.960520200000005)
+
+This URL calls the Nominatim API (OpenStreetMap geocoding service) to convert a place name to geographic coordinates.
+- [Nominatim Search API (Geocoding)](https://nominatim.openstreetmap.org/search?q=Syntagma+Square,+Athens&format=json)
 
 
 
