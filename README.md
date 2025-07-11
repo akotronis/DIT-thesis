@@ -3,6 +3,9 @@
 This thesis presents the design and implementation of a self-hosted platform for secure geolocation sharing within closed user groups, using open-source tools and virtualized infrastructure.  
 The primary objective is to develop a system that enables users to share their real-time location securely with group members, define geofenced zones, and trigger smart IoT actions based on geolocation events.
 
+## Thesis Document
+- Download from [here](https://github.com/akotronis/DIT-thesis/blob/main/docs/akotronis-Thesis.pdf)
+
 ## Dockerized Services
 
 The system is deployed inside a **Linux** virtual machine launched with **Vagrant** and **VirtualBox** where **Docker Compose** orchestrates the following services:
